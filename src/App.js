@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import styled from "styled-components";
+import Solar from "./components/SolarSystem";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <div className="CanvasContainer">
+        <Canvas>
+          <Suspense fallback={null}>
+            <Solar />
+          </Suspense>
+        </Canvas>
+      </div>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+  display: table;
+
+  .CanvasContainer {
+    width: 100%;
+    height: 100%;
+    /* aspect-ratio: 16 / 9; */
+    background: #00030f;
+  }
+`;
